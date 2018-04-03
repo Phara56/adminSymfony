@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {#<div class="container">#}
+    <div style="margin-left:260px;">
+        <div>
+            <div class="col-12 mt-3 mb-0">
+                <table class="table">
+                    <thead>
+                    <tr class="bg-header-table">
+                        <th scope="col">Nom</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Tags</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for entitie in reqOutils %}
+
+                        {#{{ dump(entitie) }}#}
+
+                        <div class="modal fade" id="exampleModal-{{ entitie.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Informations sur l'outil : {{ entitie.nom }}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {{ entitie.description_plus }}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <tr>
+                            <td class="tabOutil">{{ entitie.nom }}</td>
+                            <td class="tabOutil">{{ entitie.description }}</td>
+                            <td class="tabOutil">
+                            {% for outilTag in outilsTag %}
+                                {% if outilTag.id == entitie.id %}
+                                    {{ outilTag.name }}
+                                    {#{% else %}
+                                        Aucun tag#}
+                                {% endif %}
+                            {% endfor %}
+                            </td>
+                            <td>
+                                <a class="tabOutil btn btn-success" target="_blank" href="{{ entitie.lien }}"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                <a class="tabOutil text-white btn btn-primary" style="cursor:pointer;" data-toggle="modal" data-target="#exampleModal-{{ entitie.id }}"><i class="fa fa-info" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

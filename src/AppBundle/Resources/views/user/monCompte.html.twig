@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <div style="margin-left:260px;">
+    <li>Username : {{ Username }}</li>
+    <li>Email : {{ Email }}</li>
+    <li>Dernière connexion : {{ LastConnexion|date("d/m/Y à h:i") }}</li>
+  </div>
+{% endblock %}
