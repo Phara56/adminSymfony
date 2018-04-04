@@ -95,6 +95,28 @@ class Chambre
   */
    protected $telephone;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Hotel", inversedBy="chambres")
+     * @ORM\JoinColumn(name="hotel_id", referencedColumnName="id")
+     */
+    private $hotel;
+
+    /**
+     * @return mixed
+     */
+    public function getHotel()
+    {
+        return $this->hotel;
+    }
+
+    /**
+     * @param mixed $hotel
+     */
+    public function setHotel($hotel)
+    {
+        $this->hotel = $hotel;
+    }
+
   /**
    * Get the value of Id
    *
@@ -455,4 +477,7 @@ class Chambre
       return $this;
   }
 
+    public function __toString() {
+        return $this->nom;
+    }
 }

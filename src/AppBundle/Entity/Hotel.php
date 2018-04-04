@@ -10,6 +10,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -65,6 +66,46 @@ class Hotel
      * @Assert\NotBlank()
      */
     protected $emailcontact;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Ville", inversedBy="hotels")
+     * @ORM\JoinColumn(name="ville_id", referencedColumnName="id")
+     */
+    private $ville;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Chambre", mappedBy="hotel")
+     */
+    private $chambres;
+
+    /**
+     * @return mixed
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
+
+    /**
+     * @param mixed $ville
+     */
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
+    }
+
+    /**
+     * @param mixed $chambres
+     */
+    public function setChambres($chambres)
+    {
+        $this->chambres = $chambres;
+    }
+
+    public function __construct()
+    {
+        $this->chambres = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -192,5 +233,9 @@ class Hotel
     public function setEmailcontact($emailcontact)
     {
         $this->emailcontact = $emailcontact;
+    }
+
+    public function __toString() {
+        return $this->nom.' - '.$this->adresse;
     }
 }

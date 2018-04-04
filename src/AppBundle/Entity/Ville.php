@@ -10,6 +10,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -35,6 +36,24 @@ class Ville
      * @Assert\NotBlank()
      */
     protected $cp;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Hotel", mappedBy="ville")
+     */
+    private $hotels;
+
+    public function __construct()
+    {
+        $this->hotels = new ArrayCollection();
+    }
+
+    /**
+     * @param mixed $hotels
+     */
+    public function setHotels($hotels)
+    {
+        $this->hotels = $hotels;
+    }
 
     /**
      * @return mixed
@@ -82,5 +101,9 @@ class Ville
     public function setCp($cp)
     {
         $this->cp = $cp;
+    }
+
+    public function __toString() {
+        return $this->nom;
     }
 }

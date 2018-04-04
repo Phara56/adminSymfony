@@ -7,6 +7,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use AppBundle\Entity\Hotel;
+use AppBundle\Form\Type\HotelType;
 
 class ChambreType extends AbstractType {
     /** * {@inheritdoc} */
@@ -26,6 +28,9 @@ class ChambreType extends AbstractType {
             ->add('tv', checkboxType::class, array('label' => "Télévision", 'required' => false, 'attr' => array('class' => 'form-control')))
             ->add('wifi', checkboxType::class, array('label' => "Wifi", 'required' => false, 'attr' => array('class' => 'form-control')))
             ->add('telephone', checkboxType::class, array('label' => "Téléphone", 'required' => false, 'attr' => array('class' => 'form-control')))
+            ->add('hotel', EntityType::class, array(
+                'class' => Hotel::class,
+            ))
         ;
     }
 
