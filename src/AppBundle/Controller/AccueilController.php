@@ -31,6 +31,8 @@ class AccueilController extends Controller
      */
     public function indexAction(Request $request){
 
-        return array();
+        return array(
+            'username' => $this->getUser()->getUsername()
+        );
     }
 }
