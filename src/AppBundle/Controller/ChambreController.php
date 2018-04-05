@@ -38,6 +38,67 @@ class ChambreController extends Controller
         $form = $this->createForm(new ChambreType(), $chambre);
 
         if ($form->handleRequest($request)->isValid()) {
+
+            $file1 = $chambre->getImage1();
+            if($file1 != null || $file1 != ''){
+                $fileName1 = md5(uniqid()).'.'.$file1->guessExtension();
+                $file1->move(
+                    $this->container->getParameter('image_directory'),
+                    $fileName1
+                );
+                $chambre->setImage1($fileName1);
+            }else{
+                $chambre->setImage1('');
+            }
+
+            $file2 = $chambre->getImage2();
+            if($file2 != null || $file2 != '') {
+                $fileName2 = md5(uniqid()) . '.' . $file2->guessExtension();
+                $file2->move(
+                    $this->container->getParameter('image_directory'),
+                    $fileName2
+                );
+                $chambre->setImage2($fileName2);
+            }else{
+                $chambre->setImage2('');
+            }
+
+            $file3 = $chambre->getImage3();
+            if($file3 != null || $file3 != '') {
+                $fileName3 = md5(uniqid()) . '.' . $file3->guessExtension();
+                $file3->move(
+                    $this->container->getParameter('image_directory'),
+                    $fileName3
+                );
+                $chambre->setImage3($fileName3);
+            }else{
+                $chambre->setImage3('');
+            }
+
+            $file4 = $chambre->getImage4();
+            if($file4 != null || $file4 != '') {
+                $fileName4 = md5(uniqid()) . '.' . $file4->guessExtension();
+                $file4->move(
+                    $this->container->getParameter('image_directory'),
+                    $fileName4
+                );
+                $chambre->setImage4($fileName4);
+            }else{
+                $chambre->setImage4('');
+            }
+
+            $file5 = $chambre->getImage5();
+            if($file5 != null || $file5 != '') {
+                $fileName5 = md5(uniqid()) . '.' . $file5->guessExtension();
+                $file5->move(
+                    $this->container->getParameter('image_directory'),
+                    $fileName5
+                );
+                $chambre->setImage5($fileName5);
+            }else{
+                $chambre->setImage5('');
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($chambre);
             $em->flush();
@@ -96,6 +157,22 @@ class ChambreController extends Controller
         $em->flush();
 
         return $this->redirect($this->generateUrl('app_chambre_index'));
+    }
+
+    /**
+     * Show a Chambre entity.
+     *
+     * @Route("/{id}/show", requirements={"id"="\d+"})
+     * @Method("GET|POST")
+     * @Template("AppBundle:Chambre:show.html.twig")
+     */
+    public function showAction(Chambre $chambre, Request $request, $id)
+    {
+        $chambre = $this->getDoctrine()->getRepository('AppBundle:Chambre')->find($id);
+
+        return array(
+          'chambre' => $chambre
+        );
     }
 
 }

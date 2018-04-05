@@ -3,6 +3,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -94,6 +95,36 @@ class Chambre
   * @ORM\Column(type="boolean")
   */
    protected $telephone;
+
+    /**
+     * @ORM\Column(type="string")
+     * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
+     */
+    private $image1 = '';
+
+    /**
+     * @ORM\Column(type="string")
+     * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
+     */
+    private $image2 = '';
+
+    /**
+     * @ORM\Column(type="string")
+     * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
+     */
+    private $image3 = '';
+
+    /**
+     * @ORM\Column(type="string")
+     * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
+     */
+    private $image4 = '';
+
+    /**
+     * @ORM\Column(type="string")
+     * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
+     */
+    private $image5 = '';
 
     /**
      * @ORM\ManyToOne(targetEntity="Hotel", inversedBy="chambres")
@@ -477,7 +508,87 @@ class Chambre
       return $this;
   }
 
-    public function __toString() {
-        return $this->nom;
+    /**
+     * @return mixed
+     */
+    public function getImage1()
+    {
+        return $this->image1;
     }
+
+    /**
+     * @param mixed $image1
+     */
+    public function setImage1($image1)
+    {
+        $this->image1 = $image1;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage2()
+    {
+        return $this->image2;
+    }
+
+    /**
+     * @param mixed $image2
+     */
+    public function setImage2($image2)
+    {
+        $this->image2 = $image2;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage3()
+    {
+        return $this->image3;
+    }
+
+    /**
+     * @param mixed $image3
+     */
+    public function setImage3($image3)
+    {
+        $this->image3 = $image3;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage4()
+    {
+        return $this->image4;
+    }
+
+    /**
+     * @param mixed $image4
+     */
+    public function setImage4($image4)
+    {
+        $this->image4 = $image4;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage5()
+    {
+        return $this->image5;
+    }
+
+    /**
+     * @param mixed $image5
+     */
+    public function setImage5($image5)
+    {
+        $this->image5 = $image5;
+    }
+
+  public function __toString() {
+       return $this->nom;
+  }
 }

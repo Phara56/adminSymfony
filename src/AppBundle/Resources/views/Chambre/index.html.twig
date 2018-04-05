@@ -99,16 +99,7 @@
                                 <th scope="col">Nom</th>
                                 <th scope="col">Nb M²</th>
                                 <th scope="col">Nb pièce</th>
-                                <th scope="col">Nb Salle de bain</th>
-                                <th scope="col">Nb chambre</th>
-                                <th scope="col">Nb lit 1 place</th>
-                                <th scope="col">Nb lit 2 places</th>
-                                <th scope="col">Animal</th>
-                                <th scope="col">Douche</th>
-                                <th scope="col">Baignoire</th>
-                                <th scope="col">Tv</th>
-                                <th scope="col">Wifi</th>
-                                <th scope="col">Telephone</th>
+                                <th scope="col">Nom de l'hôtel</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
@@ -119,42 +110,10 @@
                                     <td class="tabOutil">{{ chambre.nom }}</td>
                                     <td class="tabOutil">{{ chambre.nbmcarre }}</td>
                                     <td class="tabOutil">{{ chambre.nbpiece }}</td>
-                                    <td class="tabOutil">{{ chambre.nbsdb }}</td>
-                                    <td class="tabOutil">{{ chambre.nbchambre }}</td>
-                                    <td class="tabOutil">{{ chambre.nblitsolo }}</td>
-                                    <td class="tabOutil">{{ chambre.nblitdouble }}</td>
-                                    {% if chambre.animal == false %}
-                                        <td class="tabOutil">Non</td>
-                                    {% else %}
-                                        <td class="tabOutil">Oui</td>
-                                    {% endif %}
-                                    {% if chambre.douche == false %}
-                                        <td class="tabOutil">Non</td>
-                                    {% else %}
-                                        <td class="tabOutil">Oui</td>
-                                    {% endif %}
-                                    {% if chambre.baignoire == false %}
-                                        <td class="tabOutil">Non</td>
-                                    {% else %}
-                                        <td class="tabOutil">Oui</td>
-                                    {% endif %}
-                                    {% if chambre.tv == false %}
-                                        <td class="tabOutil">Non</td>
-                                    {% else %}
-                                        <td class="tabOutil">Oui</td>
-                                    {% endif %}
-                                    {% if chambre.wifi == false %}
-                                        <td class="tabOutil">Non</td>
-                                    {% else %}
-                                        <td class="tabOutil">Oui</td>
-                                    {% endif %}
-                                    {% if chambre.telephone == false %}
-                                        <td class="tabOutil">Non</td>
-                                    {% else %}
-                                        <td class="tabOutil">Oui</td>
-                                    {% endif %}
 
+                                    <td class="tabOutil">{{ chambre.hotel.nom }}</td>
                                     <td>
+                                        <a class="tabOutil btn btn-primary" href="{{ path('app_chambre_show', {'id': chambre.id }) }}"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
                                         <a class="tabOutil btn btn-danger" href="{{ path('app_chambre_delete', {'id': chambre.id }) }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                         <a class="tabOutil btn btn-success" href="{{ path('app_outil_update', {'id': chambre.id }) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                     </td>

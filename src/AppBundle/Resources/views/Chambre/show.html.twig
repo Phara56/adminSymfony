@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {#<div class="container">#}
+    <div class="text-center" style="margin-left:260px;">
+
+    <h2 class="text-center">Visualisation chambre</h2>
+    {#<div class="row">
+    <div class="col-2"></div>#}
+    <h4>Informations sur la chambre :</h4>
+    <li>Nom de la chambre : {{ chambre.nom }}</li>
+    <li>Nombre de M² : {{ chambre.nbmcarre }}</li>
+    <li>Nombre de pièce : {{ chambre.nbpiece }}</li>
+    <li>Nombre de salle de bain : {{ chambre.nbsdb }}</li>
+    <li>Nombre de chambre : {{ chambre.nbchambre }}</li>
+    <li>Nombre de lit seul{{ chambre.nblitsolo }}</li>
+    <li>Nombre de lit double{{ chambre.nblitdouble }}</li>
+
+    <h4>Equipement de la chambre :</h4>
+    {% if chambre.animal == false %}
+        <li>Animal : Non</li>
+    {% else %}
+        <li>Animal : Oui</li>
+    {% endif %}
+    {% if chambre.douche == false %}
+        <li>Douche : Non</li>
+    {% else %}
+        <li>Douche : Oui</li>
+    {% endif %}
+    {% if chambre.baignoire == false %}
+        <li>Baignoire : Non</li>
+    {% else %}
+        <li>Baignoire : Oui</li>
+    {% endif %}
+    {% if chambre.tv == false %}
+        <li>Télévision : Non</li>
+    {% else %}
+        <li>Télévision : Oui</li>
+    {% endif %}
+    {% if chambre.wifi == false %}
+        <li>WiFi : Non</li>
+    {% else %}
+        <li>WiFi : Oui</li>
+    {% endif %}
+    {% if chambre.telephone == false %}
+        <li>Téléphone : Non</li>
+    {% else %}
+        <li>Téléphone :Oui</li>
+    {% endif %}
+
+    <h4>Images : </h4>
+    {% if chambre.image1 != '' %}
+        <img width="200" src="{{ asset('/upload/image/chambre/' ~ chambre.image1) }}" />
+    {% endif %}
+    {% if chambre.image2 != '' %}
+        <img width="200" src="{{ asset('/upload/image/chambre/' ~ chambre.image2) }}" />
+    {% endif %}
+    {% if chambre.image3 != '' %}
+        <img width="200" src="{{ asset('/upload/image/chambre/' ~ chambre.image3) }}" />
+    {% endif %}
+    {% if chambre.image4 != '' %}
+        <img width="200" src="{{ asset('/upload/image/chambre/' ~ chambre.image4) }}" />
+    {% endif %}
+    {% if chambre.image5 != '' %}
+        <img width="200" src="{{ asset('/upload/image/chambre/' ~ chambre.image5) }}" />
+    {% endif %}
+    </div>
+{% endblock %}

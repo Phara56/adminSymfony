@@ -14,6 +14,7 @@ fos_user:
 
 parameters:
     locale: fr
+    image_directory: %kernel.root_dir%/../web/upload/image/chambre
 
 framework:
     #esi: ~

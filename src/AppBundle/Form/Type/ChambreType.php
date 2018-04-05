@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use AppBundle\Entity\Hotel;
+use AppBundle\Entity\Image;
 use AppBundle\Form\Type\HotelType;
 
 class ChambreType extends AbstractType {
@@ -31,6 +32,11 @@ class ChambreType extends AbstractType {
             ->add('hotel', EntityType::class, array(
                 'class' => Hotel::class,
             ))
+            ->add('image1', null, array('label' => "Image 1 (png, jpg)", 'required' => false, 'attr' => array('class' => 'form-control')))
+            ->add('image2', null, array('label' => "Image 2 (png, jpg)", 'required' => false, 'attr' => array('class' => 'form-control')))
+            ->add('image3', null, array('label' => "Image 3 (png, jpg)", 'required' => false, 'attr' => array('class' => 'form-control')))
+            ->add('image4', null, array('label' => "Image 4 (png, jpg)", 'required' => false, 'attr' => array('class' => 'form-control')))
+            ->add('image5', null, array('label' => "Image 5 (png, jpg)", 'required' => false, 'attr' => array('class' => 'form-control')))
         ;
     }
 
