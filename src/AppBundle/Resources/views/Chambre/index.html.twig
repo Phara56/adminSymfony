@@ -19,6 +19,7 @@
                             <tr class="bg-header-table">
                                 <th scope="col">id</th>
                                 <th scope="col">Nom</th>
+                                <th scope="col">Prix à la nuitée</th>
                                 <th scope="col">Nb M²</th>
                                 <th scope="col">Nb pièce</th>
                                 <th scope="col">Nom de l'hôtel</th>
@@ -30,6 +31,7 @@
                                 <tr>
                                     <th class="tabOutil">{{ chambre.id }}</th>
                                     <td class="tabOutil">{{ chambre.nom }}</td>
+                                    <td class="tabOutil">{{ chambre.prix }}€</td>
                                     <td class="tabOutil">{{ chambre.nbmcarre }}</td>
                                     <td class="tabOutil">{{ chambre.nbpiece }}</td>
 
@@ -37,7 +39,7 @@
                                     <td>
                                         <a class="tabOutil btn btn-primary" href="{{ path('app_chambre_show', {'id': chambre.id }) }}"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
                                         <a class="tabOutil btn btn-danger" href="{{ path('app_chambre_delete', {'id': chambre.id }) }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                        <a class="tabOutil btn btn-success" href="{{ path('app_outil_update', {'id': chambre.id }) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                        <a class="tabOutil btn btn-success" href="{{ path('app_chambre_update', {'id': chambre.id }) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
                             {% endfor %}

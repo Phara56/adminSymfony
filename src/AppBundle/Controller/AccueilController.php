@@ -16,6 +16,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\User;
+use AppBundle\Entity\Chambre;
 
 /**
  * Class AccueilController
@@ -31,8 +32,21 @@ class AccueilController extends Controller
      */
     public function indexAction(Request $request){
 
+        $em = $this->getDoctrine()->getManager();
+        $hotels = $em->getRepository('AppBundle:Hotel')->findAll();
+
+        $repository = $this->getDoctrine()->getRepository(Chambre::class);
+
+        $query = $repository->createQueryBuilder('c')
+            ->orderBy('c.id', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery();
+        $chambres = $query->getResult();
+
         return array(
-            'username' => $this->getUser()->getUsername()
+            'username' => $this->getUser()->getUsername(),
+            'chambres' => $chambres,
+            'hotels' =>$hotels,
         );
     }
 }

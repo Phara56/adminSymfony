@@ -99,6 +99,8 @@ class ChambreController extends Controller
                 $chambre->setImage5('');
             }
 
+            $chambre->setDatepublication(new \DateTime('now'));
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($chambre);
             $em->flush();
@@ -126,7 +128,31 @@ class ChambreController extends Controller
             'method' => 'GET',
         ));
 
+        $oldImg1 = $chambre->getImage1();
+        $oldImg2 = $chambre->getImage2();
+        $oldImg3 = $chambre->getImage3();
+        $oldImg4 = $chambre->getImage4();
+        $oldImg5 = $chambre->getImage5();
+
         if ($editForm->handleRequest($request)->isValid()) {
+
+            /*$newImage1 = $request->get('chambre')['image1'];
+            if($newImage1 != null || $newImage1 != ''){
+                $fileName1 = md5(uniqid()).'.'.$newImage1->guessExtension();
+                $newImage1->move(
+                    $this->container->getParameter('image_directory'),
+                    $fileName1
+                );
+                $chambre->setImage1($fileName1);
+            }else{
+                $chambre->setImage1('');
+            }*/
+
+            $chambre->setImage1($oldImg1);
+            $chambre->setImage2($oldImg2);
+            $chambre->setImage3($oldImg3);
+            $chambre->setImage4($oldImg4);
+            $chambre->setImage5($oldImg5);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($chambre);

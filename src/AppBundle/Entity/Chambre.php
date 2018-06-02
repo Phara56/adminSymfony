@@ -100,37 +100,47 @@ class Chambre
      * @ORM\Column(type="string")
      * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
      */
-    private $image1 = '';
+    private $image1 = null;
 
     /**
      * @ORM\Column(type="string")
      * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
      */
-    private $image2 = '';
+    private $image2 = null;
 
     /**
      * @ORM\Column(type="string")
      * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
      */
-    private $image3 = '';
+    private $image3 = null;
 
     /**
      * @ORM\Column(type="string")
      * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
      */
-    private $image4 = '';
+    private $image4 = null;
 
     /**
      * @ORM\Column(type="string")
      * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
      */
-    private $image5 = '';
+    private $image5 = null;
 
     /**
      * @ORM\ManyToOne(targetEntity="Hotel", inversedBy="chambres")
      * @ORM\JoinColumn(name="hotel_id", referencedColumnName="id")
      */
     private $hotel;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $prix;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $datepublication;
 
     /**
      * @return mixed
@@ -591,4 +601,41 @@ class Chambre
   public function __toString() {
        return $this->nom;
   }
+
+  /**
+   * @return mixed
+   */
+  public function getPrix()
+  {
+      return $this->prix;
+  }
+
+  /**
+   * @param mixed $prix
+   */
+  public function setPrix($prix)
+  {
+      $this->prix = $prix;
+  }
+
+    /**
+     * @return mixed
+     */
+    public function getDatepublication()
+    {
+        return $this->datepublication;
+    }
+
+    /**
+     * @param mixed $datepublication
+     */
+    public function setDatepublication($datepublication)
+    {
+        $this->datepublication = $datepublication;
+    }
+
+    public function __construct()
+    {
+        $this->datepublication = new \DateTime();
+    }
 }

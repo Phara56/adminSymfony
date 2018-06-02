@@ -1,7 +1,94 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div style="padding-left:260px;">
-        Bienvenue {{ username }} sur l'administration de votre site web.
+    <div class="text-center" style="padding-left:260px;">
+        <h2>Bienvenue <span class="text-primary">{{ username }}</span> sur l'administration de votre site web.</h2>
+    </div>
+
+    <div class="container" style="padding-left:260px;">
+        <div class="row">
+            <div class="col-4">
+                <a href="#" class="btn btn-outline-primary col-12" style="padding: 30px;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <i class="fa fa-globe fa-3x" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-12 text-center">
+                                <h5>Gestion les villes</h5>
+                            </div>
+                            <div class="col-12 text-center">
+                                Ajouter, modifier, <br>supprimer une ville
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-4">
+                <a href="#" class="btn btn-outline-primary col-12" style="padding: 30px;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <i class="fa fa-h-square fa-3x" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-12 text-center">
+                                <h5>Gestion des hôtels</h5>
+                            </div>
+                            <div class="col-12 text-center">
+                                Ajouter, modifier, <br>supprimer un hôtel
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-4">
+                <a href="#" class="btn btn-outline-primary col-12" style="padding: 30px;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <i class="fa fa-bed fa-3x" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-12 text-center">
+                                <h5>Gestion des chambres</h5>
+                            </div>
+                            <div class="col-12 text-center">
+                                Ajouter, modifier, <br>supprimer une chambre
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container" style="padding-left:260px;">
+        <h2 class="text-center p-3">Dernières chambres mise en ligne</h2>
+        <div class="row">
+            {% for chambre in chambres %}
+            <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{{ asset('/upload/image/chambre/' ~ chambre.image1) }}" style="width:250px;margin:auto;" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ chambre.nom }}</h5>
+                        <p class="card-text">
+                            Nb M² : {{ chambre.nbmcarre }}<br>
+                            Nb chambre : {{ chambre.nbchambre }}<br>
+                            Nb pièce : {{ chambre.nbpiece }}<br>
+                            Nb personne : {{ chambre.nbpersonne }}<br>
+                            Hôtel : {{ chambre.hotel.nom }}<br>
+                            {% for hotel in hotels %}
+                                {% if chambre.hotel.id == hotel.id %}
+                                    Ville : {{ hotel.ville.nom }}
+                                {% endif %}
+                            {% endfor %}
+                        <p class="text-right">{{ chambre.datepublication|date('Y-m-d à H:i:s') }}</p>
+                        </p>
+                        <a href="#" class="btn btn-primary">Voir cette chambre</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use AppBundle\Entity\Hotel;
 use AppBundle\Entity\Image;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use AppBundle\Form\Type\HotelType;
 
 class ChambreType extends AbstractType {
@@ -16,6 +17,7 @@ class ChambreType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
             ->add('nom', null, array('label' => "Nom", 'attr' => array('class' => 'form-control')))
+            ->add('prix', null, array('label' => "Prix à la nuit", 'attr' => array('class' => 'form-control')))
             ->add('nbmcarre', null, array('label' => "Nombre de M²", 'attr' => array('class' => 'form-control', 'min' => '0')))
             ->add('nbpiece', null, array('label' => "Nombre de pièce", 'attr' => array('class' => 'form-control', 'min' => '0')))
             ->add('nbsdb', null, array('label' => "Nombre de salle de bain", 'attr' => array('class' => 'form-control', 'min' => '0')))
@@ -32,11 +34,11 @@ class ChambreType extends AbstractType {
             ->add('hotel', EntityType::class, array(
                 'class' => Hotel::class,
             ))
-            ->add('image1', null, array('label' => "Image 1 (png, jpg)", 'required' => false, 'attr' => array('class' => 'form-control')))
-            ->add('image2', null, array('label' => "Image 2 (png, jpg)", 'required' => false, 'attr' => array('class' => 'form-control')))
-            ->add('image3', null, array('label' => "Image 3 (png, jpg)", 'required' => false, 'attr' => array('class' => 'form-control')))
-            ->add('image4', null, array('label' => "Image 4 (png, jpg)", 'required' => false, 'attr' => array('class' => 'form-control')))
-            ->add('image5', null, array('label' => "Image 5 (png, jpg)", 'required' => false, 'attr' => array('class' => 'form-control')))
+            ->add('image1', FileType::class, array('data_class' => null, 'label' => "Image 1 (png, jpg)", 'required' => false, 'attr' => array('class' => 'form-control')))
+            ->add('image2', FileType::class, array('data_class' => null, 'label' => "Image 2 (png, jpg)", 'required' => false, 'attr' => array('class' => 'form-control')))
+            ->add('image3', FileType::class, array('data_class' => null, 'label' => "Image 3 (png, jpg)", 'required' => false, 'attr' => array('class' => 'form-control')))
+            ->add('image4', FileType::class, array('data_class' => null, 'label' => "Image 4 (png, jpg)", 'required' => false, 'attr' => array('class' => 'form-control')))
+            ->add('image5', FileType::class, array('data_class' => null, 'label' => "Image 5 (png, jpg)", 'required' => false, 'attr' => array('class' => 'form-control')))
         ;
     }
 

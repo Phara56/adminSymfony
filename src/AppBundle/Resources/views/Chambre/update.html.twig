@@ -6,6 +6,22 @@
     <div style="padding-left:260px;">
 
     <h2 class="text-center">Modification Chambre</h2>
+    <h4>Images actuelles</h4>
+    {% if chambre.image1 != '' %}
+        <img width="200" src="{{ asset('/upload/image/chambre/' ~ chambre.image1) }}" />
+    {% endif %}
+    {% if chambre.image2 != '' %}
+        <img width="200" src="{{ asset('/upload/image/chambre/' ~ chambre.image2) }}" />
+    {% endif %}
+    {% if chambre.image3 != '' %}
+        <img width="200" src="{{ asset('/upload/image/chambre/' ~ chambre.image3) }}" />
+    {% endif %}
+    {% if chambre.image4 != '' %}
+        <img width="200" src="{{ asset('/upload/image/chambre/' ~ chambre.image4) }}" />
+    {% endif %}
+    {% if chambre.image5 != '' %}
+        <img width="200" src="{{ asset('/upload/image/chambre/' ~ chambre.image5) }}" />
+    {% endif %}
     {#<div class="row">
     <div class="col-2"></div>#}
     <div class="col-12">
