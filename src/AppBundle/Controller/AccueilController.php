@@ -32,6 +32,8 @@ class AccueilController extends Controller
      */
     public function indexAction(Request $request){
 
+        $currentRole =  $this->getUser()->getRoles()[0];
+
         $em = $this->getDoctrine()->getManager();
         $hotels = $em->getRepository('AppBundle:Hotel')->findAll();
 
@@ -47,6 +49,7 @@ class AccueilController extends Controller
             'username' => $this->getUser()->getUsername(),
             'chambres' => $chambres,
             'hotels' =>$hotels,
+            'role' => $currentRole,
         );
     }
 }

@@ -1,9 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% if role == "ROLE_SUPER_ADMIN" %}
+      <div class="text-center m-2 btnAddH">
+        <a href="{{ path('admin_users') }}" class="btn btn-primary">Gestion des utilisateurs</a>
+      </div>
+    {% endif %}
   <div style="padding-left:260px;">
-    <li>Username : {{ Username }}</li>
+      <h2>Information sur mon compte</h2>
+    <li>Nom d'utilisateur : {{ Username }}</li>
     <li>Email : {{ Email }}</li>
-    <li>Dernière connexion : {{ LastConnexion|date("d/m/Y à h:i") }}</li>
+    <li>Dernière connexion : {{ LastConnexion|date("d/m/Y à h:i") }}</li><br><br>
+
+      <span>Pour modifier vos informations merci de contacter l'administrateur du site à l'adresse suivante : <a href="mailto:contact@tripaquit.com">contact@tripaquit.com</a></span>
   </div>
 {% endblock %}

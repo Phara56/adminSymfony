@@ -26,13 +26,17 @@ class MonCompteController extends Controller
   */
   public function indexAction(Request $request)
   {
+    $currentRole =  $this->getUser()->getRoles()[0];
     $em = $this->getDoctrine()->getManager();
     $users = $em->getRepository('AppBundle:User')->findAll();
+
+    $this->getUser()->getId();
 
     return array(
       'Username' => $this->getUser()->getUsername(),
       'Email' => $this->getUser()->GetEMail(),
       'LastConnexion' => $this->getUser()->getLastLogin(),
+      'role' => $currentRole,
     );
   }
 }

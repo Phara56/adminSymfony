@@ -29,7 +29,7 @@ class UserType extends AbstractType {
                         'choices' => array(
                             'ROLE_SUPER_ADMIN' => 'Super admin',
                             'ROLE_USER' => 'Utilisateur',
-                            'ROLE_PARTENAIRE' => 'Partenaire'
+                            'ROLE_PARTENAIRE' => 'Hôtelier'
                         )
                     )
                 )

@@ -14,7 +14,7 @@
 </head>
 <body>
 
-
+<div class="noirGauche"><a style="color:#fff;padding-left:15px!important;" class="navbar-brand mr-0 mr-md-2" href="{{ path('app_accueil_index') }}" aria-label="Bootstrap">Administration</a></div>
 
     <header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar bg-dark">
       <a class="navbar-brand mr-0 mr-md-2" href="{{ path('app_accueil_index') }}" aria-label="Bootstrap">Administration</a>
@@ -52,8 +52,6 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">
             <a class="dropdown-item" href="{{ path('app_moncompte_index') }}">Mes informations</a>
-            <a class="dropdown-item" href="#">Mes reservations</a>
-            <a class="dropdown-item" href="#">Mes points</a>
           </div>
         </li>
       </ul>
@@ -65,17 +63,16 @@
 
     {% if is_granted("IS_AUTHENTICATED_FULLY") %}
     <ul class="navbar-nav navbar-sidenav menu-vertical bg-dark" id="exampleAccordion">
-        <h5 class="text-light text-center mt-3">Actions</h5>
         <a class="text-light p-2" href="{{ path('app_chambre_index') }}">Gérer les chambres</a>
         <a class="text-light p-2" href="{{ path('app_hotel_index') }}">Gérer les hôtels</a>
         <a class="text-light p-2" href="{{ path('app_ville_index') }}">Gérer les villes</a>
-        <a class="text-light p-2" href="{{ path('admin_users') }}">Gérer les utilisateurs</a>
+        <a id="gestUser" style="display: none;" class="text-light p-2" href="{{ path('admin_users') }}">Gérer les utilisateurs</a>
     </ul>
     <ul class="navbar-nav sidenav-toggler btn-menu-vertical">
         <li class="nav-item">
-            <a class="nav-link text-center" id="sidenavToggler">
+            {#<a class="nav-link text-center" id="sidenavToggler">
                 <p class="m-0" style="font-size:12px;">Copyright © [company] 2018</p>
-            </a>
+            </a>#}
         </li>
     </ul>
 

@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% if role == "ROLE_SUPER_ADMIN" %}
+        <div class="text-center m-2 btnAddH">
+            <a href="#" class="btn btn-primary">Ajouter un hôtelier</a>
+        </div>
+    {% endif %}
 
     {#<div class="container">#}
     <div class="text-center" style="padding-left:260px;">

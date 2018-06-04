@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% if role == "ROLE_SUPER_ADMIN" %}
+        <div class="text-center m-2 btnAddH">
+            <a href="{{ path('admin_users') }}" class="btn btn-primary">Gestion des utilisateurs</a>
+        </div>
+    {% endif %}
     {#<div class="container">#}
     <div style="padding-left:260px;">
         <div>
@@ -32,7 +37,13 @@
                                     <th class="tabOutil">{{ entitie.id }}</th>
                                     <td class="tabOutil">{{ entitie.username }}</td>
                                     <td class="tabOutil">{{ entitie.email }}</td>
-                                    <td class="tabOutil">{{ entitie.roles[0] }}</td>
+                                    <td class="tabOutil">
+                                        {% if entitie.roles[0] == 'ROLE_PARTENAIRE' %}
+                                            ROLE_HOTELIER
+                                        {% else %}
+                                            {{ entitie.roles[0] }}
+                                        {% endif %}
+                                    </td>
                                     <td class="tabOutil">{{ entitie.lastLogin|date("Y-m-d H:i:s") }}</td>
                                     <td class="tabOutil">
                                         <a class="tabOutil btn btn-danger" href="{{ path('admin_users_delete', {'id': entitie.id }) }}"><i class="fa fa-trash" aria-hidden="true"></i></a>

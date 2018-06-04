@@ -31,6 +31,7 @@ class HotelController extends Controller
      * @Template("AppBundle:Hotel:index.html.twig")
      */
     public function indexAction(Request $request){
+        $currentRole =  $this->getUser()->getRoles()[0];
         $em = $this->getDoctrine()->getManager();
         $hotels = $em->getRepository('AppBundle:Hotel')->findAll();
 
@@ -48,6 +49,7 @@ class HotelController extends Controller
         return array(
             'hotels' => $hotels,
             'form'   => $form->createView(),
+            'role' => $currentRole,
         );
     }
 
@@ -60,6 +62,7 @@ class HotelController extends Controller
      */
     public function updateAction(Hotel $hotel, Request $request)
     {
+        $currentRole =  $this->getUser()->getRoles()[0];
         $editForm = $this->createForm(new HotelType(), $hotel, array(
             'action' => $this->generateUrl('app_hotel_update', array('id' => $hotel->getId())),
             'method' => 'GET',
@@ -77,6 +80,7 @@ class HotelController extends Controller
         return array(
             'hotel' => $hotel,
             'edit_form'   => $editForm->createView(),
+            'role' => $currentRole,
         );
     }
 
