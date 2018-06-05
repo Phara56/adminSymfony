@@ -31,6 +31,12 @@ class AccueilController extends Controller
      * @Template("AppBundle:Accueil:index.html.twig")
      */
     public function indexAction(Request $request){
+        /*$repositoryAllChambre = $this->getDoctrine()->getRepository(Chambre::class);
+        $query = $repositoryAllChambre->createQueryBuilder('c')
+            ->getQuery();
+        $allChambres = $query->getArrayResult();
+
+        echo json_encode($allChambres);*/
 
         $currentRole =  $this->getUser()->getRoles()[0];
 
@@ -51,5 +57,14 @@ class AccueilController extends Controller
             'hotels' =>$hotels,
             'role' => $currentRole,
         );
+    }
+
+    /**
+     * @param Request $request
+     * @Route("/error")
+     * @Template("AppBundle:Accueil:errorRole.html.twig")
+     */
+    public function errorroleAction(Request $request){
+
     }
 }

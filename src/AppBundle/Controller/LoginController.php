@@ -56,12 +56,20 @@ class LoginController extends Controller
 
         $csrfToken = $this->container->has('form.csrf_provider') ? $this->container->get('form.csrf_provider')->generateCsrfToken('authenticate') : null;
 
-        if($this->getUser() != ''){
-            return $this->redirectToRoute('app_accueil_index', array(
-                'last_username' => $lastUsername,
-                'error'         => $error,
-                'csrf_token'    => $csrfToken,
-            ));
+        if ($this->getUser() != '') {
+            if($this->getUser()->getRoles()[0] != "ROLE_USER"){
+                return $this->redirectToRoute('app_accueil_index', array(
+                    'last_username' => $lastUsername,
+                    'error' => $error,
+                    'csrf_token' => $csrfToken,
+                ));
+            }else{
+                return $this->redirectToRoute('app_accueil_errorrole', array(
+                    'last_username' => $lastUsername,
+                    'error' => $error,
+                    'csrf_token' => $csrfToken,
+                ));
+            }
         }else{
             return array(
                 'last_username' => $lastUsername,

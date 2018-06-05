@@ -13,9 +13,9 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
 <body>
-
+{% if is_granted("IS_AUTHENTICATED_FULLY") %}
 <div class="noirGauche"><a style="color:#fff;padding-left:15px!important;" class="navbar-brand mr-0 mr-md-2" href="{{ path('app_accueil_index') }}" aria-label="Bootstrap">Administration</a></div>
-
+{% endif %}
     <header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar bg-dark">
       <a class="navbar-brand mr-0 mr-md-2" href="{{ path('app_accueil_index') }}" aria-label="Bootstrap">Administration</a>
       {% if is_granted("IS_AUTHENTICATED_FULLY") %}
