@@ -110,4 +110,19 @@ class Reservation
     {
         $this->user = $user;
     }
+    /**
+     * @return mixed
+     */
+    public function getChambre()
+    {
+        return $this->chambre;
+    }
+
+    /**
+     * @param mixed $chambre
+     */
+    public function setChambre($chambre)
+    {
+        $this->chambre = $chambre;
+    }
 }
