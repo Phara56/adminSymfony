@@ -1,6 +1,7 @@
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+    prefix: /
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
@@ -24,3 +25,4 @@ fos_user_security:
 #fos_user_group:
 #    resource: "@FOSUserBundle/Resources/config/routing/group.xml"
 #    prefix: /group
+
