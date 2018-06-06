@@ -49,6 +49,7 @@ class ChambreType extends AbstractType {
     {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Chambre',
+            'csrf_protection' => false
         ));
     }
 

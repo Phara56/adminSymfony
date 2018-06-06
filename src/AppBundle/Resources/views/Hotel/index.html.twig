@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% if role == "ROLE_SUPER_ADMIN" %}
+        <div class="text-center m-2 btnAddH">
+            <a href="{{ path('admin_users') }}" class="btn btn-primary">Gestion des utiliasteurs</a>
+        </div>
+    {% endif %}
     <div style="padding-left:260px;">
         <div>
             <div class="col-12 {#d-flex justify-content-center#} mt-3 mb-0">

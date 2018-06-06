@@ -34,4 +34,25 @@ class User extends BaseUser
         parent::__construct();
         // your own logic
     }
+
+    /**
+     * @ORM\OneToOne(targetEntity="Reservation", mappedBy="user")
+     */
+    private $reservationUser;
+
+    /**
+     * @return mixed
+     */
+    public function getReservationUser()
+    {
+        return $this->reservationUser;
+    }
+
+    /**
+     * @param mixed $reservationUser
+     */
+    public function setReservationUser($reservationUser)
+    {
+        $this->reservationUser = $reservationUser;
+    }
 }

@@ -638,4 +638,25 @@ class Chambre
     {
         $this->datepublication = new \DateTime();
     }
+
+    /**
+     * @ORM\OneToOne(targetEntity="Reservation", mappedBy="chambre")
+     */
+    private $reservationChambre;
+
+    /**
+     * @return mixed
+     */
+    public function getReservationChambre()
+    {
+        return $this->reservationChambre;
+    }
+
+    /**
+     * @param mixed $reservationChambre
+     */
+    public function setReservationChambre($reservationChambre)
+    {
+        $this->reservationChambre = $reservationChambre;
+    }
 }

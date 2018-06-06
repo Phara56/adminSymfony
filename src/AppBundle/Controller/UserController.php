@@ -28,6 +28,7 @@ class UserController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $currentRole =  $this->getUser()->getRoles()[0];
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('AppBundle:User')->findAll();
 
@@ -45,6 +46,7 @@ class UserController extends Controller
             'entities'  => $entities,
             'user' => $user,
             'form'   => $form->createView(),
+            'role' => $currentRole,
         );
     }
 
@@ -57,6 +59,7 @@ class UserController extends Controller
      */
     public function updateAction(User $user, Request $request)
     {
+        $currentRole =  $this->getUser()->getRoles()[0];
         $editForm = $this->createForm(new UserType(), $user, array(
             'action' => $this->generateUrl('admin_users_update', array('id' => $user->getId())),
             'method' => 'GET',
@@ -72,6 +75,7 @@ class UserController extends Controller
         return array(
             'user' => $user,
             'edit_form'   => $editForm->createView(),
+            'role' => $currentRole,
         );
     }
 

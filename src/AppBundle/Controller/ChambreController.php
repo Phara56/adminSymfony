@@ -31,6 +31,7 @@ class ChambreController extends Controller
      * @Template("AppBundle:Chambre:index.html.twig")
      */
     public function indexAction(Request $request){
+        $currentRole =  $this->getUser()->getRoles()[0];
         $em = $this->getDoctrine()->getManager();
         $chambres = $em->getRepository('AppBundle:Chambre')->findAll();
 
@@ -111,6 +112,7 @@ class ChambreController extends Controller
         return array(
             'chambres' => $chambres,
             'form'   => $form->createView(),
+            'role' => $currentRole,
         );
     }
 
@@ -123,6 +125,7 @@ class ChambreController extends Controller
      */
     public function updateAction(Chambre $chambre, Request $request)
     {
+        $currentRole =  $this->getUser()->getRoles()[0];
         $editForm = $this->createForm(new ChambreType(), $chambre, array(
             'action' => $this->generateUrl('app_chambre_update', array('id' => $chambre->getId())),
             'method' => 'GET',
@@ -164,6 +167,7 @@ class ChambreController extends Controller
         return array(
             'chambre' => $chambre,
             'edit_form'   => $editForm->createView(),
+            'role' => $currentRole,
         );
     }
 
@@ -194,10 +198,12 @@ class ChambreController extends Controller
      */
     public function showAction(Chambre $chambre, Request $request, $id)
     {
+        $currentRole =  $this->getUser()->getRoles()[0];
         $chambre = $this->getDoctrine()->getRepository('AppBundle:Chambre')->find($id);
 
         return array(
-          'chambre' => $chambre
+          'chambre' => $chambre,
+            'role' => $currentRole,
         );
     }
 

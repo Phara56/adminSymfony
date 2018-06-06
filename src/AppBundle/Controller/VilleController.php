@@ -31,6 +31,7 @@ class VilleController extends Controller
      * @Template("AppBundle:Ville:index.html.twig")
      */
     public function indexAction(Request $request){
+        $currentRole =  $this->getUser()->getRoles()[0];
         $em = $this->getDoctrine()->getManager();
         $villes = $em->getRepository('AppBundle:Ville')->findAll();
 
@@ -48,6 +49,7 @@ class VilleController extends Controller
         return array(
             'villes' => $villes,
             'form'   => $form->createView(),
+            'role' => $currentRole,
         );
     }
 
@@ -60,6 +62,7 @@ class VilleController extends Controller
      */
     public function updateAction(Ville $ville, Request $request)
     {
+        $currentRole =  $this->getUser()->getRoles()[0];
         $editForm = $this->createForm(new VilleType(), $ville, array(
             'action' => $this->generateUrl('app_ville_update', array('id' => $ville->getId())),
             'method' => 'GET',
@@ -77,6 +80,7 @@ class VilleController extends Controller
         return array(
             'ville' => $ville,
             'edit_form'   => $editForm->createView(),
+            'role' => $currentRole,
         );
     }
 

@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% if role == "ROLE_SUPER_ADMIN" %}
+    <div class="text-center m-2 btnAddH">
+        <a href="{{ path('admin_users') }}" class="btn btn-primary">Gestion des utilisateurs</a>
+    </div>
+    {% endif %}
     <div class="text-center" style="padding-left:260px;">
         <h2>Bienvenue <span class="text-primary">{{ username }}</span> sur l'administration de votre site web.</h2>
     </div>
@@ -8,7 +13,7 @@
     <div class="container" style="padding-left:260px;">
         <div class="row">
             <div class="col-4">
-                <a href="#" class="btn btn-outline-primary col-12" style="padding: 30px;">
+                <a href="{{ path('app_ville_index') }}" class="btn btn-outline-primary col-12" style="padding: 30px;">
                     <div class="container">
                         <div class="row">
                             <div class="col-12">
@@ -25,7 +30,7 @@
                 </a>
             </div>
             <div class="col-4">
-                <a href="#" class="btn btn-outline-primary col-12" style="padding: 30px;">
+                <a href="{{ path('app_hotel_index') }}" class="btn btn-outline-primary col-12" style="padding: 30px;">
                     <div class="container">
                         <div class="row">
                             <div class="col-12">
@@ -42,7 +47,7 @@
                 </a>
             </div>
             <div class="col-4">
-                <a href="#" class="btn btn-outline-primary col-12" style="padding: 30px;">
+                <a href="{{ path('app_chambre_index') }}" class="btn btn-outline-primary col-12" style="padding: 30px;">
                     <div class="container">
                         <div class="row">
                             <div class="col-12">
@@ -68,7 +73,7 @@
             {% for chambre in chambres %}
             <div class="col-4">
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="{{ asset('/upload/image/chambre/' ~ chambre.image1) }}" style="width:250px;margin:auto;" alt="Card image cap">
+                    <img class="card-img-top" src="{{ asset('/upload/image/chambre/' ~ chambre.image1) }}" style="height:250px;width:250px;margin:auto;" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">{{ chambre.nom }}</h5>
                         <p class="card-text">
@@ -84,7 +89,7 @@
                             {% endfor %}
                         <p class="text-right">{{ chambre.datepublication|date('Y-m-d à H:i:s') }}</p>
                         </p>
-                        <a href="#" class="btn btn-primary">Voir cette chambre</a>
+                        <a href="{{ path('app_chambre_show', {'id': chambre.id }) }}" class="btn btn-primary">Voir cette chambre</a>
                     </div>
                 </div>
             </div>
